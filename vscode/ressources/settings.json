@@ -1,5 +1,10 @@
 {
-    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
     "editor.guides.bracketPairs": true,
-    "workbench.iconTheme": "vscode-icons"
+    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontFamily": "JetBrains Mono",   
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "terminal.integrated.inheritEnv": false,
 }
