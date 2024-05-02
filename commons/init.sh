@@ -3,7 +3,7 @@
 echo "INITIALISATION : setup des outils"
 
 # Github installation
-./git-init.sh
+./commons/git-init.sh
 
 # NPM installation
-./node-init.sh
+./commons/node-init.sh
