@@ -1,19 +1,29 @@
+.PHONY: chmod install-mac install-ubuntu update install init import-vscode export-vscode
+
 chmod:
-	@find . -type f -name '*.sh' -exec chmod +x {} \;
+	@find . -type f -name '*.sh' -exec chmod +x {} +
 
 install-mac:
+	@echo "Installing for macOS..."
 	@./mac/install.sh
 
 install-ubuntu:
-	./ubuntu/install.sh
+	@echo "Installing for Ubuntu..."
+	@./ubuntu/install.sh
 
 update:
-	git pull origin main
+	@git pull origin main
 
 install:
-	make update
-	make install-$(OS)o
+	@$(MAKE) update
+	@$(MAKE) install-$(OS)
 
 init: 
-	@./commons/init.sh	
-	
+	@echo "Initializing environment..."
+	@./commons/init.sh
+
+import-vscode:
+	./vscode/import-vscode.sh
+
+export-vscode:
+	./vscode/export-vscode.sh
