@@ -11,8 +11,9 @@ update:
 	git pull origin main
 
 install:
+	make update
 	make install-$(OS)o
 
 init: 
-	./commons/init.sh	
+	@./commons/init.sh	
 	
