@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "INIT : Initiatilisation de l'environement git"
+echo "INIT : Initialisation de l'environnement git"
 
 # Demande à l'utilisateur de saisir ses informations
 read -p "Entrez votre adresse email : " email
@@ -47,5 +47,9 @@ ssh-add ~/.ssh/id_rsa
 # Affichage de la clé publique SSH, prête à être copiée sur GitHub
 echo "Copiez la clé publique SSH ci-dessous pour l'ajouter à votre compte GitHub:"
 cat ~/.ssh/id_rsa.pub
+
+# Affichage de la clé publique GPG, prête à être copiée sur GitHub
+echo "Copiez la clé publique GPG ci-dessous pour l'ajouter à votre compte GitHub:"
+gpg --armor --export "${gpgkeyid}"
 
 echo "Configuration de Git terminée !"
