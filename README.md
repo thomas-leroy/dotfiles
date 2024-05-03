@@ -12,19 +12,23 @@
 
 The goal of this repository is to facilitate the rapid setup and synchronization of development environments across multiple machines. It also allows customization and easy management of common system configurations.
 
-## Deposit structure
+## Repository structure
 
-The deposit is organized as follows:
+The repository is organized as follows:
 
 - `commons/`: Common configurations for all environments.
 - `mac/`: Configurations for MacOs.
 - `ubuntu/`: Configurations for Ubuntu/WSL.
+- `windows/`: Configurations for Windows (Powershell).
+- `vscode/` : Code and resources to import and export configuration for Visual Studio Code
 
 ## How to use this repository
 
+### Requirement
+
 To use this repository, clone it to your local machine, then follow the instructions specific to each folder to configure the relevant software.
 
-The only dependency is git.
+The only dependency is `git`.
 
 ### Clone the repository
 
@@ -37,13 +41,13 @@ cd dotfiles
 
 #### For Windows only
 
-Use this command in **Elevated rights** PowerShell :
+Use this command in **Elevated rights** PowerShell from the repository folder:
 
 ```powershell
 .\windows\install.ps1
 ```
 
-Once done and once you've installed your distribution on wsl, you can clone back this project on WSL and follow the next sections.
+Once done and once you've installed your distribution on wsl, you can **clone back this project on WSL and follow the next sections**.
 
 #### Installation
 
@@ -87,7 +91,7 @@ Next, your node environnement will be setup:
 
 - Setting up directories to work on
 - Update node.js
-- Install http-server globally
+- Install [http-server](https://www.npmjs.com/package/http-server) globally
 
 ### Update repo
 
@@ -103,7 +107,7 @@ For now, this command is an alias of `git pull origin main`.
 make export-vscode
 ```
 
-This command will save you Visual Studio Code configuration :
+This command will save you Visual Studio Code configuration:
 
 - List of installed extensions
 - `settings.json`
