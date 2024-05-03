@@ -33,7 +33,7 @@ fi
 # Install extensions
 if command -v code >/dev/null; then
     if [ -f "./vscode/resources/extensions.list" ]; then
-        cat "./vscode/resources/extensions.list" | xargs -L 1 code --install-extension
+        xargs -L 1 code --install-extension < "./vscode/resources/extensions.list"
         echo -e "${GREEN}Extensions imported successfully.${NC}"
     else
         echo -e "${RED}No extensions.list found, skipping.${NC}"
