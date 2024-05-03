@@ -15,16 +15,16 @@ fi
 echo -e "${GREEN}Importing VSCode configuration from repository...${NC}"
 
 # Import settings
-if [ -f "./vscode/ressources/settings.json" ]; then
-    cp "./vscode/ressources/settings.json" "$VSCODE_USER_DIR/settings.json"
+if [ -f "./vscode/resources/settings.json" ]; then
+    cp "./vscode/resources/settings.json" "$VSCODE_USER_DIR/settings.json"
     echo -e "${GREEN}Settings imported successfully.${NC}"
 else
     echo -e "${RED}No settings.json in repository, skipping.${NC}"
 fi
 
 # Import keybindings
-if [ -f "./vscode/ressources/keybindings.json" ]; then
-    cp "./vscode/ressources/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
+if [ -f "./vscode/resources/keybindings.json" ]; then
+    cp "./vscode/resources/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
     echo -e "${GREEN}Keybindings imported successfully.${NC}"
 else
     echo -e "${RED}No keybindings.json in repository, skipping.${NC}"
@@ -32,8 +32,8 @@ fi
 
 # Install extensions
 if command -v code >/dev/null; then
-    if [ -f "./vscode/ressources/extensions.list" ]; then
-        cat "./vscode/ressources/extensions.list" | xargs -L 1 code --install-extension
+    if [ -f "./vscode/resources/extensions.list" ]; then
+        cat "./vscode/resources/extensions.list" | xargs -L 1 code --install-extension
         echo -e "${GREEN}Extensions imported successfully.${NC}"
     else
         echo -e "${RED}No extensions.list found, skipping.${NC}"
