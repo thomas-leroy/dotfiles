@@ -16,6 +16,8 @@ The deposit is organized as follows:
 
 To use this repository, clone it to your local machine, then follow the instructions specific to each folder to configure the relevant software.
 
+The only dependency is git.
+
 ### Clone the repository
 
 ```bash
