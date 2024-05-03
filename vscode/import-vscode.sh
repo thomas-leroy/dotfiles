@@ -1,34 +1,43 @@
 #!/bin/bash
 
-# Définition du répertoire utilisateur de VS Code en fonction du système d'exploitation
+# Colors for display
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+# Define VS Code user directory based on the operating system
 if [ "$(uname -s)" = "Darwin" ]; then
     VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
 else
     VSCODE_USER_DIR="$HOME/.config/Code/User"
 fi
 
-echo "Importing VSCode configuration from repository..."
+echo -e "${GREEN}Importing VSCode configuration from repository...${NC}"
 
-# Importation des paramètres
+# Import settings
 if [ -f "./vscode/ressources/settings.json" ]; then
     cp "./vscode/ressources/settings.json" "$VSCODE_USER_DIR/settings.json"
-    echo "Settings imported successfully."
+    echo -e "${GREEN}Settings imported successfully.${NC}"
 else
-    echo "No settings.json in repository, skipping."
+    echo -e "${RED}No settings.json in repository, skipping.${NC}"
 fi
 
-# Importation des raccourcis clavier
+# Import keybindings
 if [ -f "./vscode/ressources/keybindings.json" ]; then
     cp "./vscode/ressources/keybindings.json" "$VSCODE_USER_DIR/keybindings.json"
-    echo "Keybindings imported successfully."
+    echo -e "${GREEN}Keybindings imported successfully.${NC}"
 else
-    echo "No keybindings.json in repository, skipping."
+    echo -e "${RED}No keybindings.json in repository, skipping.${NC}"
 fi
 
-# Installation des extensions
-if [ -f "./vscode/ressources/extensions.list" ]; then
-    cat "./vscode/ressources/extensions.list" | xargs -L 1 code --install-extension
-    echo "Extensions imported successfully."
+# Install extensions
+if command -v code >/dev/null; then
+    if [ -f "./vscode/ressources/extensions.list" ]; then
+        cat "./vscode/ressources/extensions.list" | xargs -L 1 code --install-extension
+        echo -e "${GREEN}Extensions imported successfully.${NC}"
+    else
+        echo -e "${RED}No extensions.list found, skipping.${NC}"
+    fi
 else
-    echo "No extensions.list found, skipping."
+    echo -e "${RED}VS Code command line tool 'code' is not available in PATH, cannot install extensions.${NC}"
 fi
