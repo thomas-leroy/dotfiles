@@ -1,30 +1,39 @@
 #!/bin/bash
 
-# Définition du répertoire utilisateur de VS Code en fonction du système d'exploitation
+# Colors for display
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+# Define VS Code user directory based on the operating system
 if [ "$(uname -s)" = "Darwin" ]; then
     VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
 else
     VSCODE_USER_DIR="$HOME/.config/Code/User"
 fi
 
-echo "Exporting VSCode configuration to repository..."
+echo -e "${GREEN}Exporting VSCode configuration to repository...${NC}"
 
-# Exportation des paramètres
+# Export settings
 if [ -f "$VSCODE_USER_DIR/settings.json" ]; then
     cp "$VSCODE_USER_DIR/settings.json" "./vscode/ressources/settings.json"
-    echo "Settings exported successfully."
+    echo -e "${GREEN}Settings exported successfully.${NC}"
 else
-    echo "No settings.json found, skipping."
+    echo -e "${RED}No settings.json found, skipping.${NC}"
 fi
 
-# Exportation des raccourcis clavier
+# Export keybindings
 if [ -f "$VSCODE_USER_DIR/keybindings.json" ]; then
     cp "$VSCODE_USER_DIR/keybindings.json" "./vscode/ressources/keybindings.json"
-    echo "Keybindings exported successfully."
+    echo -e "${GREEN}Keybindings exported successfully.${NC}"
 else
-    echo "No keybindings.json found, skipping."
+    echo -e "${RED}No keybindings.json found, skipping.${NC}"
 fi
 
-# Liste des extensions
-code --list-extensions > "./vscode/ressources/extensions.list"
-echo "Extensions list exported successfully."
+# Export list of extensions
+if command -v code >/dev/null; then
+    code --list-extensions > "./vscode/ressources/extensions.list"
+    echo -e "${GREEN}Extensions list exported successfully.${NC}"
+else
+    echo -e "${RED}VS Code command line tool 'code' is not available in PATH, cannot export extensions list.${NC}"
+fi

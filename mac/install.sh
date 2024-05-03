@@ -1,66 +1,71 @@
 #!/bin/bash
 
+# Colors for display
+YELLOW='\033[1;33m'
+GREEN='\033[1;32m'
+NC='\033[0m' # No Color
+
 # Check if Homebrew is installed, otherwise install it
 if ! command -v brew &>/dev/null; then
-    echo -e "\e[33mHomebrew is not installed. Installing Homebrew...\e[0m"
+    echo -e "${YELLOW}Homebrew is not installed. Installing Homebrew...${NC}"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo -e "\e[32mHomebrew installation completed! ✔\e[0m"
+    echo -e "${GREEN}Homebrew installation completed! ✔${NC}"
 else
-    echo -e "\e[32mHomebrew is already installed. ✔\e[0m"
+    echo -e "${GREEN}Homebrew is already installed. ✔${NC}"
 fi
 
 # Updating Homebrew
-echo -e "\e[33mUpdating Homebrew...\e[0m"
+echo -e "${YELLOW}Updating Homebrew...${NC}"
 brew update
-echo -e "\e[32mHomebrew update completed! ✔\e[0m"
+echo -e "${GREEN}Homebrew update completed! ✔${NC}"
 
 # Installing Warp terminal
-echo -e "\e[33mInstalling Warp terminal...\e[0m"
+echo -e "${YELLOW}Installing Warp terminal...${NC}"
 brew install --cask warp
-echo -e "\e[32mWarp terminal installation completed! ✔\e[0m"
+echo -e "${GREEN}Warp terminal installation completed! ✔${NC}"
 
 # Installing Zsh and Oh My Zsh
-echo -e "\e[33mInstalling Zsh and Oh My Zsh...\e[0m"
+echo -e "${YELLOW}Installing Zsh and Oh My Zsh...${NC}"
 brew install zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-echo -e "\e[32mZsh and Oh My Zsh installation completed! ✔\e[0m"
+echo -e "${GREEN}Zsh and Oh My Zsh installation completed! ✔${NC}"
 
 # Setting default shell to Zsh
 if [ ! "$SHELL" = "/bin/zsh" ]; then
-    echo -e "\e[33mSetting Zsh as the default shell...\e[0m"
+    echo -e "${YELLOW}Setting Zsh as the default shell...${NC}"
     chsh -s /bin/zsh
-    echo -e "\e[32mDefault shell set to Zsh! ✔\e[0m"
+    echo -e "${GREEN}Default shell set to Zsh! ✔${NC}"
 fi
 
 # Configuring a dark visual theme for the terminal (Powerlevel10k)
-echo -e "\e[33mInstalling Powerlevel10k theme for a dark visual...\e[0m"
+echo -e "${YELLOW}Installing Powerlevel10k theme for a dark visual...${NC}"
 brew install romkatv/powerlevel10k/powerlevel10k
-echo 'source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-echo -e "\e[32mPowerlevel10k theme installed! ✔\e[0m"
+echo 'source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
+echo -e "${GREEN}Powerlevel10k theme installed! ✔${NC}"
 
 # Installing nvm to manage Node.js versions
-echo -e "\e[33mInstalling nvm (Node Version Manager)...\e[0m"
+echo -e "${YELLOW}Installing nvm (Node Version Manager)...${NC}"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-echo -e "\e[32mnvm installation completed! ✔\e[0m"
+echo -e "${GREEN}nvm installation completed! ✔${NC}"
 
 # Installing the latest stable version of Node.js via nvm
-echo -e "\e[33mInstalling Node.js via nvm...\e[0m"
+echo -e "${YELLOW}Installing Node.js via nvm...${NC}"
 nvm install node  # Installs the latest available version of Node.js
 nvm use node      # Uses the installed version of Node.js
-echo -e "\e[32mNode.js installation completed! ✔\e[0m"
+echo -e "${GREEN}Node.js installation completed! ✔${NC}"
 
 # Installing Docker & Docker Compose
-echo -e "\e[33mInstalling Docker and Docker Compose...\e[0m"
+echo -e "${YELLOW}Installing Docker and Docker Compose...${NC}"
 brew install --cask docker
 brew install docker-compose
-echo -e "\e[32mDocker and Docker Compose installation completed! ✔\e[0m"
+echo -e "${GREEN}Docker and Docker Compose installation completed! ✔${NC}"
 
 # Installing Visual Studio Code
-echo -e "\e[33mInstalling Visual Studio Code...\e[0m"
+echo -e "${YELLOW}Installing Visual Studio Code...${NC}"
 brew install --cask visual-studio-code
-echo -e "\e[32mVisual Studio Code installation completed! ✔\e[0m"
+echo -e "${GREEN}Visual Studio Code installation completed! ✔${NC}"
 
-echo -e "\e[32mInstallation completed. Please open a new terminal for the changes to take effect. ✔\e[0m"
+echo -e "${GREEN}Installation completed. Please open a new terminal for the changes to take effect. ✔${NC}"

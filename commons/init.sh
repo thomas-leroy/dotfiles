@@ -1,20 +1,27 @@
 #!/bin/bash
 
-# Initialization: Setting up tools
-echo -e "\e[34mINITIALIZATION: Setting up tools...\e[0m"
+# Colors for display
+BLUE='\033[1;34m'
+YELLOW='\033[1;33m'
+GREEN='\033[1;32m'
+RED='\033[1;31m'
+NC='\033[0m' # No Color
 
-# Github installation
-echo -e "\e[33mStarting GitHub setup...\e[0m"
+# Initialization: Setting up tools
+echo -e "${BLUE}INITIALIZATION: Setting up tools...${NC}"
+
+# GitHub installation
+echo -e "${YELLOW}Starting GitHub setup...${NC}"
 if ./commons/git-init.sh; then
-    echo -e "\e[32mGitHub setup completed successfully! ✔\e[0m"
+    echo -e "${GREEN}GitHub setup completed successfully! ✔${NC}"
 else
-    echo -e "\e[31mGitHub setup failed! ✖\e[0m"
+    echo -e "${RED}GitHub setup failed! ✖${NC}"
 fi
 
 # NPM installation
-echo -e "\e[33mStarting NPM setup...\e[0m"
+echo -e "${YELLOW}Starting NPM setup...${NC}"
 if ./commons/node-init.sh; then
-    echo -e "\e[32mNPM setup completed successfully! ✔\e[0m"
+    echo -e "${GREEN}NPM setup completed successfully! ✔${NC}"
 else
-    echo -e "\e[31mNPM setup failed! ✖\e[0m"
+    echo -e "${RED}NPM setup failed! ✖${NC}"
 fi
