@@ -27,6 +27,18 @@ cd dotfiles
 
 ### Facility
 
+#### For Windows only
+
+Use this command in **Elevated rights** PowerShell :
+
+```powershell
+.\windows\install.ps1
+```
+
+Once done and once you've installed your distribution on wsl, you can clone back this project on WSL and follow the next sections.
+
+#### Installation
+
 To start the installation:
 
 ```bash
@@ -107,7 +119,6 @@ This command will:
 
 List of issues that will be handled soon:
 
-- Windows Powershell code not supported yet.
 - WSL import of Visual Studio Code is not working yet for shortcut & keybindings.
 - Still room for improvement in error management.
 
