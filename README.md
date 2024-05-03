@@ -1,78 +1,78 @@
 # Dotfiles
 
-## Objectif
+## Objective
 
-L'objectif de ce dépôt est de faciliter la mise en place rapide et la synchronisation des environnements de développement sur plusieurs machines. Il permet également une personnalisation et une gestion facile des configurations système courantes.
+The goal of this repository is to facilitate the rapid setup and synchronization of development environments across multiple machines. It also allows customization and easy management of common system configurations.
 
-## Structure du dépôt
+## Deposit structure
 
-Le dépôt est organisé comme suit :
+The deposit is organized as follows:
 
-- `commons/` : Configurations communes pour tous les environments.
-- `mac/` : Configurations pour MacOs.
-- `ubuntu/` : Configurations pour Ubuntu/WSL.
+- `commons/`: Common configurations for all environments.
+- `mac/`: Configurations for MacOs.
+- `ubuntu/`: Configurations for Ubuntu/WSL.
 
-## Comment utiliser ce dépôt
+## How to use this repository
 
-Pour utiliser ce dépôt, clonez-le sur votre machine locale, puis suivez les instructions spécifiques à chaque dossier pour configurer les logiciels concernés.
+To use this repository, clone it to your local machine, then follow the instructions specific to each folder to configure the relevant software.
 
-### Cloner le dépôt
+### Clone the repository
 
 ```bash
 git clone git@github.com:thomas-leroy/dotfiles.git
 cd dotfiles
 ```
 
-### Installation
+### Facility
 
-Pour lancer l'installation :
+To start the installation:
 
 ```bash
 make install
 ```
 
-Une fois le script terminé, il est recommandé de quitter et ouvrir une nouvelle session de terminal.
+Once the script is finished, it is recommended to exit and open a new terminal session.
 
-### Initialisation de l’environnement de dev
+### Initializing the dev environment
 
-Pour initialiser git et node, lancer la commande suivante :
+To initialize git and node, run the following command:
 
 ```bash
 make init
 ```
 
-### Mettre à jour le repo
+### Update repo
 
 ```bash
 make update
 ```
 
-### Sauvegarder la configuration de Visual Studio Code
+### Save Visual Studio Code configuration
 
 ```bash
 make export-vscode
 ```
 
-Les raccourcis, paramétrages et extension installée seront sauvegardées dans le répertoire `./vscode/ressources`.
+The shortcuts, settings and installed extension will be saved in the `./vscode/ressources` directory.
 
-L'ensemble des paramètres peut être importé en utilisant la commande :
+All parameters can be imported using the command:
 
 ```bash
 make import-vscode
 ```
 
-## Personnalisation
+## Personalization
 
-Vous êtes encouragé à fork ce dépôt et à modifier les configurations selon vos besoins. Vous pouvez également contribuer à ce dépôt en proposant des améliorations ou de nouvelles configurations.
+You are encouraged to fork this repository and modify the configurations as needed. You can also contribute to this repository by proposing improvements or new configurations.
 
 ## Licence
 
-Ce dépôt est distribué sous la licence MIT. Vous êtes libre de l'utiliser, le modifier et le redistribuer selon les termes de cette licence.
+This repository is distributed under the MIT License. You are free to use, modify and redistribute it under the terms of this license.
 
 ## Contribution
 
-Les contributions à ce dépôt sont les bienvenues. Si vous souhaitez améliorer ou ajouter de nouvelles configurations, veuillez soumettre une pull request.
+Contributions to this repository are welcome. If you want to improve or add new configurations, please submit a pull request.
 
 ## Support
 
-Si vous avez des questions ou rencontrez des problèmes avec ce dépôt, veuillez ouvrir une issue dans ce dépôt GitHub.
+If you have any questions or encounter issues with this repository, please open an issue in this GitHub repository.
