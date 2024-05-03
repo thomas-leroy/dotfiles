@@ -1,19 +1,21 @@
 #!/bin/bash
 
-echo "INIT : Initialisation de l'environnement git"
+# Initializing git environment
+echo -e "\e[34mINIT: Initializing git environment...\e[0m"
 
-# Demande à l'utilisateur de saisir ses informations
-read -p "Entrez votre adresse email : " email
-read -p "Entrez votre nom complet : " fullname
-read -p "Entrez l'ID de votre clé GPG (si disponible, sinon une nouvelle sera créée) : " gpgkeyid
+# Prompting the user for information
+echo -e "\e[33mPlease enter the following information:\e[0m"
+read -p "Email address: " email
+read -p "Full name: " fullname
+read -p "GPG key ID (if available, otherwise a new one will be created): " gpgkeyid
 
-# Configuration de Git avec les informations saisies
+# Configuring Git with the provided information
 git config --global user.email "${email}"
 git config --global user.name "${fullname}"
 
 if [[ -z "$gpgkeyid" ]]; then
-    # Création d'une nouvelle clé GPG si aucune n'est fournie
-    echo "Aucune clé GPG fournie. Création d'une nouvelle clé GPG..."
+    # Creating a new GPG key if none is provided
+    echo -e "\e[33mNo GPG key provided. Generating a new GPG key...\e[0m"
     gpg --batch --full-generate-key <<EOF
 Key-Type: RSA
 Key-Length: 4096
@@ -24,32 +26,32 @@ Name-Email: ${email}
 Expire-Date: 0
 EOF
 
-    # Récupération de l'ID de la clé GPG nouvellement créée
+    # Retrieving the ID of the newly created GPG key
     gpgkeyid=$(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2)
-    echo "Nouvelle clé GPG créée avec l'ID: $gpgkeyid"
+    echo -e "New GPG key created with ID: $gpgkeyid \e[32m✔\e[0m"
 fi
 
-# Configuration de la clé GPG dans Git
+# Configuring the GPG key in Git
 git config --global user.signingkey "${gpgkeyid}"
 git config --global commit.gpgsign true
 
 git config --global core.pager "less"
 git config --global core.excludesfile ~/.gitignore
 
-# Création d'une nouvelle clé SSH, avec l'email comme label
-echo "Création d'une clé SSH pour ${email}..."
+# Creating a new SSH key, with the email as a label
+echo -e "\e[33mGenerating an SSH key for ${email}...\e[0m"
 ssh-keygen -t rsa -b 4096 -C "${email}" -f ~/.ssh/id_rsa -N ""
 
-# Démarrage de ssh-agent et ajout de la clé à ssh-agent
+# Starting ssh-agent and adding the key to ssh-agent
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 
-# Affichage de la clé publique SSH, prête à être copiée sur GitHub
-echo "Copiez la clé publique SSH ci-dessous pour l'ajouter à votre compte GitHub:"
+# Displaying the SSH public key, ready to be copied to GitHub
+echo -e "\e[33mCopy the SSH public key below to add it to your GitHub account:\e[0m"
 cat ~/.ssh/id_rsa.pub
 
-# Affichage de la clé publique GPG, prête à être copiée sur GitHub
-echo "Copiez la clé publique GPG ci-dessous pour l'ajouter à votre compte GitHub:"
+# Displaying the GPG public key, ready to be copied to GitHub
+echo -e "\e[33mCopy the GPG public key below to add it to your GitHub account:\e[0m"
 gpg --armor --export "${gpgkeyid}"
 
-echo "Configuration de Git terminée !"
+echo -e "\e[32mGit configuration completed! ✔\e[0m"
