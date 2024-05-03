@@ -1,5 +1,7 @@
 # Dotfiles
 
+![Commit Activity](https://img.shields.io/github/commit-activity/m/thomas-leroy/dotfiles)
+![License](https://img.shields.io/github/license/thomas-leroy/dotfiles)
 
 <p align="center">
   <img src="./assets/header.webp" alt="Dotfiles Logo">
