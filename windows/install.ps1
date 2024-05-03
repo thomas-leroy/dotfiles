@@ -18,8 +18,13 @@ function Set-Color {
 if (-Not (Get-Command choco -ErrorAction SilentlyContinue)) {
     Set-Color "yellow"
     Write-Host "Chocolatey not found. Installing Chocolatey..."
+    # New method to install Chocolatey
+    $chocoInstallScriptUrl = 'https://chocolatey.org/install.ps1'
+    $chocoInstallScriptPath = Join-Path -Path $env:TEMP -ChildPath "chocoInstall.ps1"
+    Invoke-WebRequest $chocoInstallScriptUrl -OutFile $chocoInstallScriptPath
     Set-ExecutionPolicy Bypass -Scope Process -Force
-    iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    . $chocoInstallScriptPath
+    Remove-Item $chocoInstallScriptPath -Force
 }
 
 # Install make using Chocolatey
