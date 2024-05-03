@@ -33,7 +33,19 @@ To start the installation:
 make install
 ```
 
-Once the script is finished, it is recommended to exit and open a new terminal session.
+This will install different tools depending the environnement :
+
+| Ubuntu                  | Mac                     |
+|-------------------------|-------------------------|
+| -                       | Warp terminal           |
+| -                       | Homebrew                |
+| Zsh & Oh My Zsh         | Zsh & Oh My Zsh         |
+| Theme (Powerlevel10k)   | Theme (Powerlevel10k)   |
+| node.js (via nvm)       | node.js (via nvm)       |
+| Docker & Docker Compose | Docker & Docker Compose |
+| Visual Studio Code      | Visual Studio Code      |
+
+Once the script is finished, **it is needed to exit and open a new terminal session**.
 
 ### Initializing the dev environment
 
@@ -43,11 +55,27 @@ To initialize git and node, run the following command:
 make init
 ```
 
+This script will init git env by:
+
+- Setting up your git email address & name globally
+- [OPTIONAL] Generate GPG key
+- Setting up your git GPG key globally
+- Generating a new SSH key
+- Display SSH public key and GPG public key to add it to your [Github configuration](https://github.com/settings/keys)
+
+Next, your node environnement will be setup:
+
+- Setting up directories to work on
+- Update node.js
+- Install http-server globally
+
 ### Update repo
 
 ```bash
 make update
 ```
+
+For now, this command is an alias of `git pull origin main`.
 
 ### Save Visual Studio Code configuration
 
@@ -55,7 +83,13 @@ make update
 make export-vscode
 ```
 
-The shortcuts, settings and installed extension will be saved in the `./vscode/ressources` directory.
+This command will save you Visual Studio Code configuration :
+
+- List of installed extensions
+- `settings.json`
+- `keybindings.json`
+
+The shortcuts, settings and installed extension will be saved in the `./vscode/resources` directory.
 
 All parameters can be imported using the command:
 
@@ -63,17 +97,25 @@ All parameters can be imported using the command:
 make import-vscode
 ```
 
+This command will:
+
+- Install the list of extensions on top of existing extensions (if any)
+- Restore `settings.json`
+- Restore `keybindings.json`
+
 ## Known limitations
 
-Windows Powershell code not supported yet.
+List of issues that will be handled soon:
 
-Still room for improvement in error management.
+- Windows Powershell code not supported yet.
+- WSL import of Visual Studio Code is not working yet for shortcut & keybindings.
+- Still room for improvement in error management.
 
 ## Personalization
 
 You are encouraged to fork this repository and modify the configurations as needed. You can also contribute to this repository by proposing improvements or new configurations.
 
-## Licence
+## License
 
 This repository is distributed under the MIT License. You are free to use, modify and redistribute it under the terms of this license.
 
