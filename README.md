@@ -1,5 +1,10 @@
 # Dotfiles
 
+
+<p align="center">
+  <img src="./assets/header.webp" alt="Dotfiles Logo">
+</p>
+
 ## Objective
 
 The goal of this repository is to facilitate the rapid setup and synchronization of development environments across multiple machines. It also allows customization and easy management of common system configurations.
