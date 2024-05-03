@@ -19,13 +19,13 @@ echo -e "${GREEN}Zsh and Oh My Zsh installation completed! ✔${NC}"
 # Configuring a dark visual theme for the terminal (Powerlevel10k)
 echo -e "${YELLOW}Installing Powerlevel10k theme...${NC}"
 sudo apt install -y git fonts-powerline
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-echo 'source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
+git clone --depth=1 "https://github.com/romkatv/powerlevel10k.git" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+echo "source $HOME/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" >> "$HOME/.zshrc"
 echo -e "${GREEN}Powerlevel10k theme installed! ✔${NC}"
 
 # Installing nvm to manage Node.js versions
 echo -e "${YELLOW}Installing nvm (Node Version Manager)...${NC}"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh" | bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -42,7 +42,7 @@ echo -e "${YELLOW}Installing Docker and Docker Compose...${NC}"
 sudo apt install -y docker.io docker-compose
 sudo systemctl start docker
 sudo systemctl enable docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker "$USER"
 echo -e "${GREEN}Docker and Docker Compose installation completed! ✔${NC}"
 
 # Installing Visual Studio Code
