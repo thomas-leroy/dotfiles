@@ -2,6 +2,7 @@
 
 ![Commit Activity](https://img.shields.io/github/commit-activity/m/thomas-leroy/dotfiles)
 ![License](https://img.shields.io/github/license/thomas-leroy/dotfiles)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6a363d98c12c4145a3a731baa8b6e34b)](https://app.codacy.com/gh/thomas-leroy/dotfiles/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 <p align="center">
   <img src="./assets/header.webp" alt="Dotfiles Logo">
@@ -128,6 +129,7 @@ List of issues that will be handled soon:
 
 - WSL import of Visual Studio Code is not working yet for shortcut & keybindings.
 - Still room for improvement in error management.
+- Working on code quality
 
 ## Personalization
 
