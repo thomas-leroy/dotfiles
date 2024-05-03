@@ -130,6 +130,7 @@ List of issues that will be handled soon:
 - WSL import of Visual Studio Code is not working yet for shortcut & keybindings.
 - Still room for improvement in error management.
 - Working on code quality
+- Needs full testing on fresh installations
 
 ## Personalization
 
