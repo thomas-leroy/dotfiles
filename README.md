@@ -63,6 +63,12 @@ All parameters can be imported using the command:
 make import-vscode
 ```
 
+## Known limitations
+
+Windows Powershell code not supported yet.
+
+Still room for improvement in error management.
+
 ## Personalization
 
 You are encouraged to fork this repository and modify the configurations as needed. You can also contribute to this repository by proposing improvements or new configurations.
