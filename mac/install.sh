@@ -8,7 +8,11 @@ NC='\033[0m' # No Color
 # Check if Homebrew is installed, otherwise install it
 if ! command -v brew &>/dev/null; then
     echo -e "${YELLOW}Homebrew is not installed. Installing Homebrew...${NC}"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh -o ./tmp/homebrew_install.sh
+    echo "Homebrew installer script downloaded. Please inspect the script before running it."
+    read -p "Press enter to continue if the script is okay."
+    /bin/bash ./tmp/homebrew_install.sh
+    rm ./tmp/homebrew_install.sh
     echo -e "${GREEN}Homebrew installation completed! ✔${NC}"
 else
     echo -e "${GREEN}Homebrew is already installed. ✔${NC}"
@@ -38,7 +42,11 @@ echo -e "${GREEN}Warp terminal installation completed! ✔${NC}"
 # Installing Zsh and Oh My Zsh
 echo -e "${YELLOW}Installing Zsh and Oh My Zsh...${NC}"
 brew install zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o ./tmp/ohmyzsh_install.sh
+echo "Script downloaded. Please inspect the script before running it."
+read -p "Press enter to continue if the script is okay."
+sh ./tmp/ohmyzsh_install.sh
+rm ./tmp/ohmyzsh_install.sh
 echo -e "${GREEN}Zsh and Oh My Zsh installation completed! ✔${NC}"
 
 # Setting default shell to Zsh
