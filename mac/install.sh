@@ -62,12 +62,16 @@ brew install romkatv/powerlevel10k/powerlevel10k
 echo 'source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
 echo -e "${GREEN}Powerlevel10k theme installed! ✔${NC}"
 
-# Installing nvm to manage Node.js versions
-echo -e "${YELLOW}Installing nvm (Node Version Manager)...${NC}"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Downloading the latest nvm install script
+echo -e "${YELLOW}Downloading the latest nvm (Node Version Manager) install script...${NC}"
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh -o ./tmp/nvm_install.sh
+echo -e "${YELLOW}Latest nvm install script downloaded. Please inspect the script before running it.${NC}"
+read -p "Press enter to continue if the script is okay."
+
+# Installing nvm from the downloaded script
+echo -e "${YELLOW}Installing nvm from the downloaded script...${NC}"
+sh ./tmp/nvm_install.sh
+rm ./tmp/nvm_install.sh  # Cleaning up the script after installation
 echo -e "${GREEN}nvm installation completed! ✔${NC}"
 
 # Installing the latest stable version of Node.js via nvm
