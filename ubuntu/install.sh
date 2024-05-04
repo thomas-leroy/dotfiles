@@ -10,6 +10,11 @@ echo -e "${YELLOW}Updating packages...${NC}"
 sudo apt update && sudo apt upgrade -y
 echo -e "${GREEN}Package update completed! ✔${NC}"
 
+# Installing Nano, SSH, htop, grep, awk, sed, GCC, and Python
+echo -e "${YELLOW}Installing Nano, SSH, htop, grep, awk, sed, GCC, and Python...${NC}"
+sudo apt install -y nano openssh-server htop grep gawk sed gcc python3 python3-pip
+echo -e "${GREEN}Tools installation completed! ✔${NC}"
+
 # Installing Zsh and configuring Oh My Zsh
 echo -e "${YELLOW}Installing Zsh and configuring Oh My Zsh...${NC}"
 sudo apt install -y zsh
