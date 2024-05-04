@@ -60,4 +60,9 @@ cat ~/.ssh/id_rsa.pub
 echo -e "${YELLOW}Copy the GPG public key below to add it to your GitHub account:${NC}"
 gpg --armor --export "${gpgkeyid}"
 
+# Configuring terminal to set GPG_TTY automatically
+echo -e "${YELLOW}Configuring terminal to set GPG_TTY automatically...${NC}"
+echo 'export GPG_TTY=$(tty)' >> ~/.zshrc
+echo -e "${GREEN}Terminal configured to set GPG_TTY automatically! ✔${NC}"
+
 echo -e "${GREEN}Git configuration completed! ✔${NC}"
