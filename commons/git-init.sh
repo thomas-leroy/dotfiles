@@ -62,7 +62,7 @@ gpg --armor --export "${gpgkeyid}"
 
 # Configuring terminal to set GPG_TTY automatically
 echo -e "${YELLOW}Configuring terminal to set GPG_TTY automatically...${NC}"
-echo 'export GPG_TTY=$(tty)' >> ~/.zshrc
+echo "export GPG_TTY=$(tty)" >> ~/.zshrc
 echo -e "${GREEN}Terminal configured to set GPG_TTY automatically! ✔${NC}"
 
 echo -e "${GREEN}Git configuration completed! ✔${NC}"
