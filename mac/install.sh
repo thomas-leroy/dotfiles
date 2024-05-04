@@ -5,6 +5,10 @@ YELLOW='\033[1;33m'
 GREEN='\033[1;32m'
 NC='\033[0m' # No Color
 
+# Ensure temporary directory exists and is empty
+mkdir -p ./tmp/
+cd ./tmp/
+
 # Check if Homebrew is installed, otherwise install it
 if ! command -v brew &>/dev/null; then
     echo -e "${YELLOW}Homebrew is not installed. Installing Homebrew...${NC}"
@@ -90,5 +94,8 @@ echo -e "${GREEN}Docker and Docker Compose installation completed! ✔${NC}"
 echo -e "${YELLOW}Installing Visual Studio Code...${NC}"
 brew install --cask visual-studio-code
 echo -e "${GREEN}Visual Studio Code installation completed! ✔${NC}"
+
+#Delete temporary folder
+rm -rf ./tmp/
 
 echo -e "${GREEN}Installation completed. Please open a new terminal for the changes to take effect. ✔${NC}"

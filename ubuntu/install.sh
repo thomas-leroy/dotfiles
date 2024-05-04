@@ -5,6 +5,10 @@ YELLOW='\033[1;33m'
 GREEN='\033[1;32m'
 NC='\033[0m' # No Color
 
+# Ensure temporary directory exists and is empty
+mkdir -p ./tmp/
+cd ./tmp/
+
 # Update packages and install necessary tools
 echo -e "${YELLOW}Updating packages...${NC}"
 sudo apt update && sudo apt upgrade -y
@@ -29,11 +33,14 @@ echo "source $HOME/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-them
 echo -e "${GREEN}Powerlevel10k theme installed! ✔${NC}"
 
 # Installing nvm to manage Node.js versions
-echo -e "${YELLOW}Installing nvm (Node Version Manager)...${NC}"
-curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh" | bash
+echo -e "${YELLOW}Downloading nvm (Node Version Manager) install script...${NC}"
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh -o ./tmp/nvm_install.sh
+echo "nvm install script downloaded. Please inspect the script before running it."
+read -p "Press enter to continue if the script is okay."
+sh ./tmp/nvm_install.sh
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 echo -e "${GREEN}nvm installation completed! ✔${NC}"
 
 # Installing the latest stable version of Node.js via nvm
@@ -54,5 +61,8 @@ echo -e "${GREEN}Docker and Docker Compose installation completed! ✔${NC}"
 echo -e "${YELLOW}Installing Visual Studio Code...${NC}"
 sudo snap install --classic code
 echo -e "${GREEN}Visual Studio Code installation completed! ✔${NC}"
+
+#Delete temporary folder
+rm -rf ./tmp/
 
 echo -e "${GREEN}Installation completed. Please open a new terminal or restart your session for the changes to take effect. ✔${NC}"
