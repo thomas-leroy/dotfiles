@@ -19,6 +19,17 @@ echo -e "${YELLOW}Updating Homebrew...${NC}"
 brew update
 echo -e "${GREEN}Homebrew update completed! ✔${NC}"
 
+# Installing necessary tools
+echo -e "${YELLOW}Installing Nano, SSH, htop, grep/awk/sed, GCC, and Python...${NC}"
+brew install nano
+brew install openssh
+brew install htop
+brew install grep
+brew install gawk
+brew install gcc
+brew install python
+echo -e "${GREEN}Tools installation completed! ✔${NC}"
+
 # Installing Warp terminal
 echo -e "${YELLOW}Installing Warp terminal...${NC}"
 brew install --cask warp
