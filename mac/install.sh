@@ -35,12 +35,12 @@ echo -e "${GREEN}Tools installation completed! ✔${NC}"
 # Ask the user to choose their default editor
 echo -e "${YELLOW}Choose your default editor (vim, nano, emacs, etc.). Default is vim.${NC}"
 read -p "Enter your editor choice (leave empty for default): " editor_choice
-editor_choice=${editor_choice:-vim}  # Set default to vim if empty
+editor_choice="${editor_choice:-vim}"  # Set default to vim if empty
 
 # Check if the chosen editor is installed, install if not
-if ! command -v $editor_choice &>/dev/null; then
+if ! command -v "$editor_choice" &>/dev/null; then
     echo -e "${YELLOW}$editor_choice is not installed. Installing $editor_choice...${NC}"
-    brew install $editor_choice
+    brew install "$editor_choice"
     echo -e "${GREEN}$editor_choice installation completed! ✔${NC}"
 else
     echo -e "${GREEN}$editor_choice is already installed. ✔${NC}"
