@@ -108,6 +108,12 @@ echo -e "${YELLOW}Installing Visual Studio Code...${NC}"
 brew install --cask visual-studio-code
 echo -e "${GREEN}Visual Studio Code installation completed! ✔${NC}"
 
+# MacOs Preferences setup
+echo -e "${YELLOW}Setup MacOs preferences...${NC}"
+sh ./mac/preferences-setup.sh
+echo -e "${GREEN}Setup completed! ✔${NC}"
+
+
 #Delete temporary folder
 rm -rf ./tmp/
 

@@ -10,7 +10,7 @@
 
 ## Objective
 
-The goal of this repository is to facilitate the rapid setup and synchronization of development environments across multiple machines. It also allows customization and easy management of common system configurations.
+The goal of this repository is to facilitate the rapid setup and synchronization of development environments across multiple machines for web development. It also allows customization and easy management of common system configurations.
 
 ## Repository structure
 
@@ -68,6 +68,8 @@ This will install different tools depending the environnement :
 | node.js (via nvm)       | node.js (via nvm)       |
 | Docker & Docker Compose | Docker & Docker Compose |
 | Visual Studio Code      | Visual Studio Code      |
+
+**For Mac Users only:** This script will install preferences for MacOs. [More details on preference Mac Os.](mac/preferences-mac.md)
 
 Once the script is finished, **it is needed to exit and open a new terminal session**.
 
