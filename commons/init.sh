@@ -10,17 +10,25 @@ NC='\033[0m' # No Color
 # Initialization: Setting up tools
 echo -e "${BLUE}INITIALIZATION: Setting up tools...${NC}"
 
-# GitHub installation
-echo -e "${YELLOW}Starting GitHub setup...${NC}"
+# Git installation
+echo -e "${YELLOW}Starting Git setup...${NC}"
 if ./commons/git-init.sh; then
-    echo -e "${GREEN}GitHub setup completed successfully! ✔${NC}"
+    echo -e "${GREEN}Git setup completed successfully! ✔${NC}"
 else
-    echo -e "${RED}GitHub setup failed! ✖${NC}"
+    echo -e "${RED}Git setup failed! ✖${NC}"
 fi
 
 # NPM installation
 echo -e "${YELLOW}Starting NPM setup...${NC}"
 if ./commons/node-init.sh; then
+    echo -e "${GREEN}NPM setup completed successfully! ✔${NC}"
+else
+    echo -e "${RED}NPM setup failed! ✖${NC}"
+fi
+
+# Z installation
+echo -e "${YELLOW}Starting Z setup...${NC}"
+if ./commons/Z-init.sh; then
     echo -e "${GREEN}NPM setup completed successfully! ✔${NC}"
 else
     echo -e "${RED}NPM setup failed! ✖${NC}"
