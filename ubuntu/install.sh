@@ -19,6 +19,24 @@ echo -e "${YELLOW}Installing Nano, SSH, htop, grep, awk, sed, GCC, and Python...
 sudo apt install -y nano openssh-server htop grep gawk sed gcc python3 python3-pip
 echo -e "${GREEN}Tools installation completed! ✔${NC}"
 
+# Ask the user to choose their default editor
+echo -e "${YELLOW}Choose your default editor (vim, nano, emacs, etc.). Default is vim:${NC}"
+read -p "Enter your editor choice (leave empty for default): " editor_choice
+editor_choice=${editor_choice:-vim}  # Set default to vim if empty
+
+# Check if the chosen editor is installed, install if not
+if ! command -v $editor_choice &>/dev/null; then
+    echo -e "${YELLOW}$editor_choice is not installed. Installing $editor_choice...${NC}"
+    sudo apt install -y $editor_choice
+    echo -e "${GREEN}$editor_choice installation completed! ✔${NC}"
+else
+    echo -e "${GREEN}$editor_choice is already installed. ✔${NC}"
+fi
+
+# Set the default editor environment variable for zsh
+export EDITOR=$editor_choice
+echo "export EDITOR=$editor_choice" >> ~/.zshrc
+
 # Installing Zsh and configuring Oh My Zsh
 echo -e "${YELLOW}Installing Zsh and configuring Oh My Zsh...${NC}"
 sudo apt install -y zsh

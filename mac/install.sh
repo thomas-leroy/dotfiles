@@ -29,14 +29,26 @@ echo -e "${GREEN}Homebrew update completed! ✔${NC}"
 
 # Installing necessary tools
 echo -e "${YELLOW}Installing Nano, SSH, htop, grep/awk/sed, GCC, and Python...${NC}"
-brew install nano
-brew install openssh
-brew install htop
-brew install grep
-brew install gawk
-brew install gcc
-brew install python
+brew install nano openssh htop grep gawk gcc python
 echo -e "${GREEN}Tools installation completed! ✔${NC}"
+
+# Ask the user to choose their default editor
+echo -e "${YELLOW}Choose your default editor (vim, nano, emacs, etc.). Default is vim.${NC}"
+read -p "Enter your editor choice (leave empty for default): " editor_choice
+editor_choice=${editor_choice:-vim}  # Set default to vim if empty
+
+# Check if the chosen editor is installed, install if not
+if ! command -v $editor_choice &>/dev/null; then
+    echo -e "${YELLOW}$editor_choice is not installed. Installing $editor_choice...${NC}"
+    brew install $editor_choice
+    echo -e "${GREEN}$editor_choice installation completed! ✔${NC}"
+else
+    echo -e "${GREEN}$editor_choice is already installed. ✔${NC}"
+fi
+
+# Set the default editor environment variable for zsh
+export EDITOR=$editor_choice
+echo "export EDITOR=$editor_choice" >> ~/.zshrc
 
 # Installing Warp terminal
 echo -e "${YELLOW}Installing Warp terminal...${NC}"
