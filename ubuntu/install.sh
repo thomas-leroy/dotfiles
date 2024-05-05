@@ -16,7 +16,8 @@ echo -e "${GREEN}Package update completed! ✔${NC}"
 
 # Installing Nano, SSH, htop, grep, awk, sed, GCC, and Python
 echo -e "${YELLOW}Installing Nano, SSH, htop, grep, awk, sed, GCC, and Python...${NC}"
-sudo apt install -y nano openssh-server htop grep gawk sed gcc python3 python3-pip
+sudo apt install -y nano openssh-server htop grep gawk sed gcc python3 python3-pip git-extras
+source /opt/homebrew/opt/git-extras/share/git-extras/git-extras-completion.zsh
 echo -e "${GREEN}Tools installation completed! ✔${NC}"
 
 # Ask the user to choose their default editor
