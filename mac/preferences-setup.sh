@@ -17,6 +17,9 @@ echo -e "${YELLOW}Enabling snap-to-grid for desktop icons...${NC}"
 /usr/bin/defaults write com.apple.finder FXEnableSnapToGrid -bool true
 echo -e "${GREEN}Snap-to-grid enabled. ✔${NC}"
 
+# Allow AirDrop from every network.
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+
 # Finder configurations
 echo -e "${YELLOW}Configuring Finder preferences...${NC}"
 /usr/bin/defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
@@ -24,6 +27,8 @@ echo -e "${YELLOW}Configuring Finder preferences...${NC}"
 /usr/bin/defaults write com.apple.finder AppleShowAllFiles -bool true
 /usr/bin/defaults write com.apple.finder ShowPathbar -bool true
 /usr/bin/defaults write com.apple.finder ShowStatusBar -bool true
+/usr/bin/defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+chflags nohidden ~/Library
 echo -e "${GREEN}Finder preferences configured. ✔${NC}"
 
 # General configurations
