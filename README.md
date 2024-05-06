@@ -142,7 +142,7 @@ List of issues that will be handled soon:
 
 ## Personalization
 
-You are encouraged to fork this repository and modify the configurations as needed. You can also contribute to this repository by proposing improvements or new configurations.
+You are encouraged to fork this repository and modify the configurations as needed.
 
 ## License
 
