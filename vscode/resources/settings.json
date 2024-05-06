@@ -9,10 +9,6 @@
     "terminal.integrated.inheritEnv": false,
     "terminal.integrated.defaultProfile.osx": "zsh",
     "terminal.external.osxExec": "warp.app",
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
-    "files.exclude": {
-        "**/node_modules": true
-    },
-    "redhat.telemetry.enabled": false
+    "redhat.telemetry.enabled": false,
+    "explorer.confirmDragAndDrop": false,
 }

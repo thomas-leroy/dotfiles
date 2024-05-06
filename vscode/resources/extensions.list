@@ -1,7 +1,9 @@
 aaron-bond.better-comments
 adpyke.codesnap
 andrejunges.handlebars
+chakrounanas.turbo-console-log
 christian-kohler.path-intellisense
+codacy-app.codacy
 davidanson.vscode-markdownlint
 dbaeumer.vscode-eslint
 devsense.composer-php-vscode
@@ -17,7 +19,9 @@ formulahendry.auto-rename-tag
 formulahendry.docker-explorer
 gruntfuggly.todo-tree
 inferrinizzard.prettier-sql-vscode
+kamikillerto.vscode-colorize
 lovebird.better-comments-enhanced
+lulus.vscode-regexp-preivew
 mikestead.dotenv
 monokai.theme-monokai-pro-vscode
 mrmlnc.vscode-apache
@@ -26,7 +30,9 @@ ms-vscode.makefile-tools
 ms-vscode.powershell
 ms-vscode.vscode-typescript-next
 narasimapandiyan.jetbrainsmono
+nicoespeon.abracadabra
 octref.vetur
+p42ai.refactor
 redhat.vscode-yaml
 rvest.vs-code-prettier-eslint
 shd101wyy.markdown-preview-enhanced
@@ -39,6 +45,7 @@ vue.volar
 wayou.vscode-todo-highlight
 whatwedo.twig
 william-voyek.vscode-nginx
+xabikos.javascriptsnippets
 xdebug.php-debug
 xdebug.php-pack
 zignd.html-css-class-completion
