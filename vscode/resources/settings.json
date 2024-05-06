@@ -10,5 +10,5 @@
     "terminal.integrated.defaultProfile.osx": "zsh",
     "terminal.external.osxExec": "warp.app",
     "redhat.telemetry.enabled": false,
-    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDragAndDrop": false
 }
