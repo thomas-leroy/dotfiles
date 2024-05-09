@@ -7,9 +7,6 @@ export CLICOLOR=true
 # Extend the function path with custom functions from $ZSH/functions directory. This allows ZSH to load additional user-defined functions.
 fpath=($ZSH/functions $fpath)
 
-# Automatically load all functions from $ZSH/functions directory, making them available for use without explicit sourcing.
-autoload -U $ZSH/functions/*(:t)
-
 # Set the location of the ZSH command history file.
 HISTFILE=~/.zsh_history
 
