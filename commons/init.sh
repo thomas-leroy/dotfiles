@@ -28,8 +28,16 @@ fi
 
 # Z installation
 echo -e "${YELLOW}Starting Z setup...${NC}"
-if ./commons/Z-init.sh; then
+if ./commons/z-init.sh; then
     echo -e "${GREEN}NPM setup completed successfully! ✔${NC}"
 else
     echo -e "${RED}NPM setup failed! ✖${NC}"
+fi
+
+# ZSH aliases installation
+echo -e "${YELLOW}Adding aliases to .zshrc...${NC}"
+if ./commons/zsh-init.sh; then
+    echo -e "${GREEN}Aliases successfully added! ✔${NC}"
+else
+    echo -e "${RED}Failed to add aliases to .zshrc! ✖${NC}"
 fi
