@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Set up the color scheme for 'ls' when using the '-G' flag. 'exfxcxdxbxegedabagacad' defines specific colors for various file types.
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
