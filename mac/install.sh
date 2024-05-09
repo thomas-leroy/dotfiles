@@ -28,8 +28,8 @@ brew update
 echo -e "${GREEN}Homebrew update completed! ✔${NC}"
 
 # Installing necessary tools
-echo -e "${YELLOW}Installing Nano, SSH, htop, grep/awk/sed, GCC, and Python...${NC}"
-brew install nano openssh htop grep gawk gcc python git-extras
+echo -e "${YELLOW}Installing Nano, SSH, htop, grep/awk/sed, GCC, tig and Python...${NC}"
+brew install nano openssh htop grep gawk gcc python git-extras tig
 source /opt/homebrew/opt/git-extras/share/git-extras/git-extras-completion.zsh
 echo -e "${GREEN}Tools installation completed! ✔${NC}"
 
