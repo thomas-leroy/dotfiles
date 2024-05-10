@@ -20,6 +20,14 @@ sudo apt install -y nano openssh-server htop grep gawk sed gcc python3 python3-p
 source /opt/homebrew/opt/git-extras/share/git-extras/git-extras-completion.zsh
 echo -e "${GREEN}Tools installation completed! ✔${NC}"
 
+# Installing PHP
+echo -e "${YELLOW}Installing PHP8.3...${NC}"
+sudo apt -y install software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt update
+sudo apt install php8.3
+echo -e "${GREEN}PHP installation completed! ✔${NC}"
+
 # Ask the user to choose their default editor
 echo -e "${YELLOW}Choose your default editor (vim, nano, emacs, etc.). Default is vim:${NC}"
 read -p "Enter your editor choice (leave empty for default): " editor_choice
