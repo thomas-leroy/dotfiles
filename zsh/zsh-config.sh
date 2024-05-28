@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Ensure GPG can access the current terminal for passphrase prompts
+export GPG_TTY=$(tty)
+
 # Set up the color scheme for 'ls' when using the '-G' flag. 'exfxcxdxbxegedabagacad' defines specific colors for various file types.
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
