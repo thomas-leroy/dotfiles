@@ -33,6 +33,11 @@ brew install nano openssh htop grep gawk gcc python git-extras tig
 source /opt/homebrew/opt/git-extras/share/git-extras/git-extras-completion.zsh
 echo -e "${GREEN}Tools installation completed! ✔${NC}"
 
+# Installing PHP
+echo -e "${YELLOW}Installing PHP...${NC}"
+brew install php
+echo -e "${GREEN}PHP installation completed! ✔${NC}"
+
 # Ask the user to choose their default editor
 echo -e "${YELLOW}Choose your default editor (vim, nano, emacs, etc.). Default is vim.${NC}"
 read -p "Enter your editor choice (leave empty for default): " editor_choice
