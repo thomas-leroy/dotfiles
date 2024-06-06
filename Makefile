@@ -1,4 +1,4 @@
-.PHONY: chmod install-mac install-ubuntu install-fedora update install init import-vscode export-vscode
+.PHONY: chmod install-mac install-ubuntu install-fedora install init import-vscode export-vscode
 
 chmod:
 	@find . -type f -name '*.sh' -exec chmod +x {} +
@@ -14,9 +14,6 @@ install-ubuntu:
 install-fedora:
 	@echo "Installing for Fedora..."
 	@./fedora/install.sh
-
-update:
-	@git pull origin main
 
 install:
 	@$(MAKE) update
