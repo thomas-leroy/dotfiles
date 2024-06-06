@@ -51,7 +51,7 @@ Use this command in **Elevated rights** PowerShell from the repository folder:
 
 Once done and once you've installed your distribution on wsl, you can **clone back this project on WSL and follow the next sections**.
 
-#### Installation
+### Step 1 : Installation
 
 To start the installation:
 
@@ -61,7 +61,7 @@ make install
 
 This will install different tools depending the environnement :
 
-| Ubuntu                  | Mac                     |
+| Ubuntu / Fedora         | Mac                     |
 |-------------------------|-------------------------|
 | -                       | Warp terminal           |
 | -                       | Homebrew                |
@@ -75,7 +75,7 @@ This will install different tools depending the environnement :
 
 Once the script is finished, **it is needed to exit and open a new terminal session**.
 
-### Initializing the dev environment
+### Step 2 : Initializing the dev environment
 
 To initialize git and node, run the following command:
 
@@ -97,27 +97,7 @@ Next, your node environnement will be setup:
 - Update node.js
 - Install [http-server](https://www.npmjs.com/package/http-server) globally
 
-### Update repo
-
-```bash
-make update
-```
-
-For now, this command is an alias of `git pull origin main`.
-
-### Save Visual Studio Code configuration
-
-```bash
-make export-vscode
-```
-
-This command will save you Visual Studio Code configuration:
-
-- List of installed extensions
-- `settings.json`
-- `keybindings.json`
-
-The shortcuts, settings and installed extension will be saved in the `./vscode/resources` directory.
+### Step 3 : Import Visual Studio Code configuration
 
 All parameters can be imported using the command:
 
@@ -130,6 +110,20 @@ This command will:
 - Install the list of extensions on top of existing extensions (if any)
 - Restore `settings.json`
 - Restore `keybindings.json`
+
+### [OPTIONAL] Save Visual Studio Code configuration
+
+```bash
+make export-vscode
+```
+
+This command will save you Visual Studio Code configuration:
+
+- List of installed extensions
+- `settings.json`
+- `keybindings.json`
+
+The shortcuts, settings and installed extension will be saved in the `./vscode/resources` directory.
 
 ## Known limitations
 
