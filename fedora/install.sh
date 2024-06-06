@@ -60,13 +60,9 @@ echo -e "${GREEN}Powerlevel10k theme installed! ✔${NC}"
 
 # Installing nvm to manage Node.js versions
 echo -e "${YELLOW}Downloading nvm (Node Version Manager) install script...${NC}"
-curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh -o ./tmp/nvm_install.sh
-echo "nvm install script downloaded. Please inspect the script before running it."
-read -p "Press enter to continue if the script is okay."
-sh ./tmp/nvm_install.sh
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+sudo dnf install -y nodejs npm
+sudo npm install -g nvm
+sudo npm install -g n
 echo -e "${GREEN}nvm installation completed! ✔${NC}"
 
 # Installing the latest stable version of Node.js via nvm
