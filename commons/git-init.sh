@@ -20,24 +20,12 @@ git config --global user.email "${email}"
 git config --global user.name "${fullname}"
 
 if [[ -z "$gpgkeyid" ]]; then
-    # Creating a new GPG key if none is provided
     echo -e "${YELLOW}No GPG key provided. Generating a new GPG key...${NC}"
-    gpg --batch --full-generate-key <<EOF
-Key-Type: RSA
-Key-Length: 4096
-Subkey-Type: RSA
-Subkey-Length: 4096
-Name-Real: ${fullname}
-Name-Email: ${email}
-Expire-Date: 0
-EOF
-
-    # Retrieving the ID of the newly created GPG key
-    gpgkeyid=$(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2)
+    gpg --quick-gen-key "${fullname} <${email}>" rsa4096 sign,auth,encr 0 --no-protection
+    gpgkeyid=$(gpg --list-secret-keys --keyid-format LONG "${email}" | grep sec | awk '{print $2}' | cut -d'/' -f2)
     echo -e "${GREEN}New GPG key created with ID: $gpgkeyid ✔${NC}"
 fi
 
-# Configuring the GPG key in Git
 git config --global user.signingkey "${gpgkeyid}"
 git config --global commit.gpgsign true
 
