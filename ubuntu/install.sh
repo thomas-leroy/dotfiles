@@ -14,9 +14,9 @@ echo -e "${YELLOW}Updating packages...${NC}"
 sudo apt update && sudo apt upgrade -y
 echo -e "${GREEN}Package update completed! ✔${NC}"
 
-# Installing Nano, SSH, htop, grep, awk, sed, GCC, and Python
-echo -e "${YELLOW}Installing Nano, SSH, htop, grep, awk, sed, GCC, tig and Python...${NC}"
-sudo apt install -y nano openssh-server htop grep gawk sed gcc python3 python3-pip git-extras tig
+# Installing Nano, SSH, btop, grep, awk, sed, GCC, and Python
+echo -e "${YELLOW}Installing Nano, SSH, btop, grep, awk, sed, GCC, tig and Python...${NC}"
+sudo apt install -y nano openssh-server btop grep gawk sed gcc python3 python3-pip git-extras tig neofetch
 source /opt/homebrew/opt/git-extras/share/git-extras/git-extras-completion.zsh
 echo -e "${GREEN}Tools installation completed! ✔${NC}"
 
