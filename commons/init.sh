@@ -18,20 +18,20 @@ else
     echo -e "${RED}Git setup failed! ✖${NC}"
 fi
 
-# NPM installation
-echo -e "${YELLOW}Starting NPM setup...${NC}"
+# PNPM installation
+echo -e "${YELLOW}Starting PNPM setup...${NC}"
 if ./commons/node-init.sh; then
-    echo -e "${GREEN}NPM setup completed successfully! ✔${NC}"
+    echo -e "${GREEN}PNPM setup completed successfully! ✔${NC}"
 else
-    echo -e "${RED}NPM setup failed! ✖${NC}"
+    echo -e "${RED}PNPM setup failed! ✖${NC}"
 fi
 
 # Z installation
 echo -e "${YELLOW}Starting Z setup...${NC}"
 if ./commons/z-init.sh; then
-    echo -e "${GREEN}NPM setup completed successfully! ✔${NC}"
+    echo -e "${GREEN}Z setup completed successfully! ✔${NC}"
 else
-    echo -e "${RED}NPM setup failed! ✖${NC}"
+    echo -e "${RED}Z setup failed! ✖${NC}"
 fi
 
 # ZSH aliases installation
