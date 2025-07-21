@@ -5,7 +5,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6a363d98c12c4145a3a731baa8b6e34b)](https://app.codacy.com/gh/thomas-leroy/dotfiles/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 <p align="center">
-  <img src="./assets/header.webp" alt="Dotfiles Logo">
+  <img src="./assets/logo.png" alt="Dotfiles Logo" style="display:block;margin:auto;width:400px;height:400px;object-fit:contain;">
 </p>
 
 ## Objective
