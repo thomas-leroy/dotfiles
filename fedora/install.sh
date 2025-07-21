@@ -58,7 +58,6 @@ git clone --depth=1 "https://github.com/romkatv/powerlevel10k.git" "${ZSH_CUSTOM
 echo "source $HOME/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" >> "$HOME/.zshrc"
 echo -e "${GREEN}Powerlevel10k theme installed! ✔${NC}"
 
-
 # Installing pnpm and nvm to manage Node.js versions
 echo -e "${YELLOW}Installing Node.js, npm and pnpm...${NC}"
 sudo dnf install -y nodejs npm
@@ -70,7 +69,6 @@ fi
 sudo pnpm add -g nvm
 sudo pnpm add -g n
 echo -e "${GREEN}nvm and n installation completed! ✔${NC}"
-
 
 # Installing the latest stable version of Node.js via nvm
 echo -e "${YELLOW}Installing Node.js via nvm...${NC}"
