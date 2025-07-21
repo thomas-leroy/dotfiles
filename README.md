@@ -12,6 +12,8 @@
 
 The goal of this repository is to facilitate the rapid setup and synchronization of development environments across multiple machines for web development. It also allows customization and easy management of common system configurations.
 
+You can gather some bash scripts to facilitate the setup of your dev environment.
+
 You can also use my [VS Code extension list](vscode/resources/features.md), so your code editor is closer to a "real" IDE.
 
 ## Repository structure
