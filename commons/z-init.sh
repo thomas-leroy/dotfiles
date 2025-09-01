@@ -8,13 +8,13 @@ NC='\033[0m' # No Color
 echo -e "${YELLOW}Installing 'z' for quick directory navigation...${NC}"
     
 # Clone z repository
-git clone https://github.com/rupa/z.git "$HOME/.z"
+git clone https://github.com/rupa/z.git "$HOME/.z-install"
 
 # Add z to .zshrc
 echo -e "${YELLOW}Configuring z in .zshrc...${NC}"
 {
     echo "# z configuration"
-    echo "source $HOME/.z/z.sh"
+    echo "source $HOME/.z-install/z.sh"
     echo "export _Z_DATA=$HOME/.zdata"
 } >> "$HOME/.zshrc"
 
