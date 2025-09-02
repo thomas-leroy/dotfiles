@@ -135,6 +135,7 @@ List of issues that will be handled soon:
 - Still room for improvement in error management.
 - Working on code quality
 - Needs full testing on fresh installations
+- nvm needs to be replaced by volta
 
 ## Personalization
 
