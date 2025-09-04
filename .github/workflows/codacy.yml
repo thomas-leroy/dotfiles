@@ -31,8 +31,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Prepare a temp directory to store SARIF files outside the repository.
+      # This prevents "uncommitted changes" and exit code 13 from the Codacy CLI.
+      - name: Prepare SARIF temp dir
+        run: echo "SARIF_DIR=${RUNNER_TEMP}/sarif" >> "$GITHUB_ENV"
+
+      - name: Create SARIF dir
+        run: mkdir -p "$SARIF_DIR"
+
       # Detect if there are files relevant for the current tool.
-      # If no files are found, we skip analysis to avoid "configuration error".
+      # If none are found, skip analysis to avoid configuration errors.
       - name: Detect target files (${{ matrix.tool }})
         id: detect
         shell: bash
@@ -58,7 +66,6 @@ jobs:
               ;;
           esac
 
-          # Filter: keep only existing files
           EXISTING=()
           for f in "${FILES[@]}"; do
             [[ -f "$f" ]] && EXISTING+=( "$f" )
@@ -72,27 +79,25 @@ jobs:
             printf '%s\n' "${EXISTING[@]}" | sed 's/^/ - /'
           fi
 
-      # Run Codacy CLI only if relevant files exist for this tool
+      # Run Codacy Analysis CLI only when relevant files exist for this tool.
+      # Results are uploaded both to Codacy SaaS (via project token)
+      # and to GitHub SARIF for visibility in Security > Code scanning alerts.
       - name: Run Codacy Analysis CLI (${{ matrix.tool }})
         if: steps.detect.outputs.has_files == 'true'
         uses: codacy/codacy-analysis-cli-action@d840f886c4bd4edc059706d09c6a1586111c540b
         with:
           tool: ${{ matrix.tool }}
-          # Keep the project token only if you are using Codacy SaaS.
-          # Otherwise, you can safely remove this line.
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}   # Needed for Codacy SaaS
           verbose: true
           format: sarif
-          output: results-${{ matrix.tool }}.sarif
+          output: ${{ env.SARIF_DIR }}/results-${{ matrix.tool }}.sarif
           gh-code-scanning-compat: true
-          # Always generate SARIF regardless of issues count
           max-allowed-issues: 2147483647
-          # Do not upload to Codacy SaaS here, only produce SARIF for GitHub
-          upload: false
+          upload: true   # Upload results to Codacy SaaS
 
-      # Upload SARIF results to GitHub Security tab
+      # Upload SARIF results to GitHub's Security > Code scanning alerts
       - name: Upload SARIF (${{ matrix.tool }})
         if: steps.detect.outputs.has_files == 'true'
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: results-${{ matrix.tool }}.sarif
+          sarif_file: ${{ env.SARIF_DIR }}/results-${{ matrix.tool }}.sarif
