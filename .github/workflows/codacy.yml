@@ -1,13 +1,18 @@
+# This workflow checks out code, runs Codacy Analysis CLI once (like the original,
+# non-matrix version that worked for you), uploads results to Codacy SaaS,
+# and publishes a SARIF to GitHub Code Scanning.
+# Key fix: write SARIF to RUNNER_TEMP to keep the repo clean between steps.
+
 name: Codacy Security Scan
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main" ]   # must be a subset of the push branches
   schedule:
     - cron: '34 22 * * 5'
-  workflow_dispatch: {}   # Allow manual trigger from the Actions tab
+  workflow_dispatch: {}     # allow manual runs
 
 permissions:
   contents: read
@@ -16,86 +21,45 @@ jobs:
   codacy-security-scan:
     name: Codacy Security Scan
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     permissions:
-      contents: read          # required for checkout
-      security-events: write  # required to upload SARIF results
-      actions: read           # required for SARIF upload in private repositories
-
-    strategy:
-      fail-fast: false
-      matrix:
-        tool: [ "shellcheck", "remark-lint", "yamllint", "psscriptanalyzer" ]
+      contents: read          # for actions/checkout
+      security-events: write  # for github/codeql-action/upload-sarif
+      actions: read           # required in private repos by upload-sarif to get the run status
 
     steps:
+      # Checkout the repository to the GitHub Actions runner
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Prepare a temp directory to store SARIF files outside the repository.
-      - name: Prepare SARIF temp dir
-        run: echo "SARIF_DIR=${RUNNER_TEMP}/sarif" >> "$GITHUB_ENV"
+      # Choose a SARIF output path OUTSIDE the repository to avoid "uncommitted changes"
+      - name: Set SARIF path
+        id: sarif
+        run: echo "SARIF_FILE=${RUNNER_TEMP}/codacy-results.sarif" >> "$GITHUB_ENV"
 
-      - name: Create SARIF dir
-        run: mkdir -p "$SARIF_DIR"
-
-      # Detect relevant files for the current tool.
-      # Skip the tool if no matching files are found.
-      - name: Detect target files (${{ matrix.tool }})
-        id: detect
-        shell: bash
-        run: |
-          shopt -s globstar nullglob
-          TOOL="${{ matrix.tool }}"
-          case "$TOOL" in
-            shellcheck)
-              FILES=( **/*.sh **/*.bash **/*.zsh )
-              ;;
-            remark-lint)
-              FILES=( **/*.md )
-              ;;
-            yamllint)
-              FILES=( **/*.yml **/*.yaml )
-              ;;
-            psscriptanalyzer)
-              FILES=( **/*.ps1 )
-              ;;
-            *)
-              echo "Unknown tool: $TOOL" >&2
-              exit 1
-              ;;
-          esac
-
-          EXISTING=()
-          for f in "${FILES[@]}"; do
-            [[ -f "$f" ]] && EXISTING+=( "$f" )
-          done
-
-          if (( ${#EXISTING[@]} == 0 )); then
-            echo "has_files=false" >> "$GITHUB_OUTPUT"
-            echo "No matching files for tool '$TOOL'. Skipping analysis."
-          else
-            echo "has_files=true" >> "$GITHUB_OUTPUT"
-            printf '%s\n' "${EXISTING[@]}" | sed 's/^/ - /'
-          fi
-
-      # Run Codacy Analysis CLI with SaaS upload enabled
-      - name: Run Codacy Analysis CLI (${{ matrix.tool }})
-        if: steps.detect.outputs.has_files == 'true'
+      # Execute Codacy Analysis CLI and generate a SARIF output
+      # NOTE: Requires a valid Project API Token stored as secret CODACY_PROJECT_TOKEN
+      - name: Run Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@d840f886c4bd4edc059706d09c6a1586111c540b
         with:
-          tool: ${{ matrix.tool }}
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}   # Required for Codacy SaaS integration
+          # Get the token from your Codacy project settings (Project API Token) and store it as a GitHub Actions secret
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           verbose: true
+          output: ${{ env.SARIF_FILE }}   # write outside the repo
           format: sarif
-          output: ${{ env.SARIF_DIR }}/results-${{ matrix.tool }}.sarif
+          # Adjust severity of non-security issues for GH code scanning
           gh-code-scanning-compat: true
+          # Always produce SARIF (hand over failure decision to GitHub side)
           max-allowed-issues: 2147483647
-          upload: true   # Upload results to Codacy SaaS
-          # codacy-api-base-url: https://codacy.example.com   # Uncomment if using Codacy self-hosted
+          # Also upload results to Codacy SaaS (keeps your existing Codacy integration intact)
+          upload: true
+          # If you use a self-hosted Codacy, uncomment and set the base URL:
+          # codacy-api-base-url: https://codacy.example.com
+          #
+          # If you want to strictly restrict which tools run, keep a .codacy.yml in the repo
+          # enabling only shellcheck/remark-lint/yamllint/psscriptanalyzer.
 
-      # Upload SARIF results to GitHub Security tab
-      - name: Upload SARIF (${{ matrix.tool }})
-        if: steps.detect.outputs.has_files == 'true'
+      # Upload the SARIF file generated above to GitHub Advanced Security code scanning
+      - name: Upload SARIF results file
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: ${{ env.SARIF_DIR }}/results-${{ matrix.tool }}.sarif
+          sarif_file: ${{ env.SARIF_FILE }}
